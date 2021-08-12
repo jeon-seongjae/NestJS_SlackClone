@@ -6,11 +6,16 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { UsersModule } from './users/users.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 import { ChannelsModule } from './channels/channels.module';
+import { GmsService } from './gms/gms.service';
+import { DmsController } from './dms/dms.controller';
+import { DmsModule } from './dms/dms.module';
+import { DmsService } from './dms/dms.service';
+import { DmsController } from './dms/dms.controller';
 
 @Module({
-  imports: [ConfigModule.forRoot(), UsersModule, WorkspacesModule, ChannelsModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [ConfigModule.forRoot(), UsersModule, WorkspacesModule, ChannelsModule, DmsModule],
+  controllers: [AppController, DmsController],
+  providers: [AppService, GmsService, DmsService],
 })
 export class AppModule implements NestModule {
   // middleware들은 consumer에 연결한다.
