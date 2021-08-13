@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 
 @Controller('api/workspace/:url/dms')
 export class DmsController {
@@ -10,5 +10,5 @@ export class DmsController {
   }
 
   @Post(':id/chats')
-  postChat() {}
+  postChat(@Body() body) {}
 }
