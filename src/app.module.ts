@@ -8,14 +8,16 @@ import { WorkspacesModule } from './workspaces/workspaces.module';
 import { ChannelsModule } from './channels/channels.module';
 import { GmsService } from './gms/gms.service';
 import { DmsController } from './dms/dms.controller';
+import { WorkspaceController } from './workspace/workspace.controller';
+import { WorkspaceService } from './workspace/workspace.service';
 import { DmsModule } from './dms/dms.module';
 import { DmsService } from './dms/dms.service';
 import { DmsController } from './dms/dms.controller';
 
 @Module({
   imports: [ConfigModule.forRoot(), UsersModule, WorkspacesModule, ChannelsModule, DmsModule],
-  controllers: [AppController, DmsController],
-  providers: [AppService, GmsService, DmsService],
+  controllers: [AppController, DmsController, WorkspaceController],
+  providers: [AppService, GmsService, DmsService, WorkspaceService],
 })
 export class AppModule implements NestModule {
   // middleware들은 consumer에 연결한다.
