@@ -11,14 +11,18 @@ import { WorkspacesService } from './workspaces/workspaces.service';
 import { DmsModule } from './dms/dms.module';
 import { DmsService } from './dms/dms.service';
 import { DmsController } from './dms/dms.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import * as ormconfig from '../ormconfig';
 
 @Module({
+  // express에서 app.use이런 개념을 nest에서는 모듈로 사용한다고 생각하면 됨
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot(), // forRoot 이런 건 설정이라고 보면 된다.
     UsersModule,
     WorkspacesModule,
     ChannelsModule,
     DmsModule,
+    TypeOrmModule.forRoot(ormconfig),
   ],
   controllers: [AppController, DmsController, WorkspacesController],
   providers: [AppService, DmsService, WorkspacesService],
