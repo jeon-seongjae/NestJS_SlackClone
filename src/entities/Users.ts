@@ -17,19 +17,38 @@ import { DMs } from './DMs';
 import { Mentions } from './Mentions';
 import { WorkspaceMembers } from './WorkspaceMembers';
 import { Workspaces } from './Workspaces';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Index('email', ['email'], { unique: true })
 @Entity({ schema: 'sleact', name: 'users' })
 export class Users {
+  @ApiProperty({
+    example: 1,
+    description: '사용자 아이디',
+  })
   @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
   id: number;
 
+  @IsEmail()
+  @ApiProperty({
+    example: 'tjdwoek62@gmail.com',
+    description: '이메일',
+  })
   @Column('varchar', { name: 'email', unique: true, length: 30 })
   email: string;
 
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    example: '성재',
+    description: '닉네임',
+  })
   @Column('varchar', { name: 'nickname', length: 30 })
   nickname: string;
 
+  @IsString()
+  @IsNotEmpty()
   @Column('varchar', { name: 'password', length: 100, select: false })
   password: string;
 
