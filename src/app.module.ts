@@ -13,11 +13,13 @@ import { DmsService } from './dms/dms.service';
 import { DmsController } from './dms/dms.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as ormconfig from '../ormconfig';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   // express에서 app.use이런 개념을 nest에서는 모듈로 사용한다고 생각하면 됨
   imports: [
     ConfigModule.forRoot(), // forRoot 이런 건 설정이라고 보면 된다.
+    AuthModule,
     UsersModule,
     WorkspacesModule,
     ChannelsModule,
