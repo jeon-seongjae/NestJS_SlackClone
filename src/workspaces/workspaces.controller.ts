@@ -8,6 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { throws } from 'assert';
 import { User } from 'src/common/decorators/user.decorator';
 import { Users } from 'src/entities/Users';
 import { CreateWorkspaceDto } from './dto/create-workspace.dto';
@@ -16,7 +17,7 @@ import { WorkspacesService } from './workspaces.service';
 @ApiTags('WORKSPACE')
 @Controller('api/workspaces')
 export class WorkspacesController {
-  constructor(private workspacesService: WorkspacesService) {}
+  constructor(private workspacesService: WorkspacesService) { }
   @Get()
   // getMyworkSpaces(@Param('myId', ParseIntPipe) myId: number) {
   //   return this.workspacesService.findMyWorkspaces(myId);
@@ -35,16 +36,18 @@ export class WorkspacesController {
   }
 
   @Get(':url/members')
-  getAllMembersFromWorkspace() {}
+  getAllMembersFromWorkspace(@Param('url') url: string) {
+    return this.workspacesService.getWorkspaceMembers(url);
+  }
 
   @Post(':url/members')
-  inviteMembersToWorkspace() {}
+  inviteMembersToWorkspace() { }
 
   @Delete(':url/members/:id')
-  kickMemberFromWorkspace() {}
+  kickMemberFromWorkspace() { }
 
   @Get(':url/members')
-  getMembersInfoInWorkspace() {}
+  getMembersInfoInWorkspace() { }
 
   @Get(':url/users/:id')
   DEPRECATED_getMembersInfoInWorkspace() {
