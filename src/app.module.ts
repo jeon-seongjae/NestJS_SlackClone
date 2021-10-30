@@ -14,6 +14,8 @@ import { DmsController } from './dms/dms.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as ormconfig from '../ormconfig';
 import { AuthModule } from './auth/auth.module';
+import { EventsModule } from './events/events.module';
+import { EventsGateway } from './events/events.gateway';
 
 @Module({
   // express에서 app.use이런 개념을 nest에서는 모듈로 사용한다고 생각하면 됨
@@ -25,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
     ChannelsModule,
     DmsModule,
     TypeOrmModule.forRoot(ormconfig),
+    EventsModule,
   ],
   controllers: [AppController, DmsController, WorkspacesController],
   providers: [AppService, DmsService, WorkspacesService],
