@@ -29,7 +29,7 @@ async function bootstrap() {
 
   app.useStaticAssets(path.join(__dirname, '..', 'uploads'), {
     prefix: '/uploads',
-  })
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Sleact API')
@@ -52,3 +52,5 @@ async function bootstrap() {
   }
 }
 bootstrap();
+
+//test
